@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "degradation-geometry"
+version = "0.1.0"
+description = "Tasks 0 and 1: reproducible clean-image sampling and differentiable degradations"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.2", "numpy>=1.24", "Pillow>=10", "PyYAML>=6"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["geometry_lab*"]

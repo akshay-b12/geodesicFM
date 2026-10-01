@@ -1,0 +1,27 @@
+# Paths use forward slashes on Windows. Set these two fields before Task 0.
+dataset:
+  train_hr: null  # e.g. E:/datasets/DIV2K/DIV2K_train_HR
+  valid_hr: null  # e.g. E:/datasets/DIV2K/DIV2K_valid_HR
+  expected_train_images: 800
+  expected_valid_images: 100
+sampling:
+  seed: 20260930
+  crop_size: 256
+  crops_per_image: 4
+  halo: 16  # Context from the original image, beyond every side of the core crop.
+  color_space: srgb  # srgb or linear_rgb; changing this changes the induced metric.
+experiment:
+  output_dir: outputs/task01
+  dtype: float64
+  device: cpu
+  torch_threads: 4
+operators:
+  kernel_size: 33  # Fixed for the entire parameter domain; radius <= halo.
+  sigma_domain: [0.5, 3.5]
+  theta_units: radians
+  support_sigma_multiple: 4.0
+preview:
+  split: train  # Keep validation out of exploratory previews.
+  image_index: 0
+  crop_index: 0
+  noise_seed: 271828
