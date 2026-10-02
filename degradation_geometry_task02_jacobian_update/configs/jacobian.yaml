@@ -1,0 +1,49 @@
+# Task 2: numerical correctness, not metric estimation.
+# This file supplements your EXISTING default.yaml; do not replace that file.
+output_dir: outputs/task02
+device: cpu
+torch_threads: 4
+operators:
+  - affine_intensity
+  - gaussian_noise
+  - isotropic_blur
+  - anisotropic_fixed_theta
+  - anisotropic_blur
+  - haze_unit_depth
+  - haze_toy_depth
+  - blur_then_noise
+  - noise_then_blur
+  - blur_then_haze
+  - haze_then_blur
+relative_steps: [0.03, 0.01, 0.003, 0.001, 0.0003, 0.0001, 0.00003, 0.00001, 0.000003, 0.000001]
+minimum_adjacent_passes: 2
+noise_realizations: 2
+noise_seed: 314159
+projection_seed: 161803
+reverse_probes: 3
+control_core_size: 16
+control_patterns: [textured, constant, impulse]
+pilot:
+  max_train_images: 4
+  max_valid_images: 2
+  crops_per_image: 1
+precision:
+  max_train_images: 1
+  max_valid_images: 0
+  crops_per_image: 1
+support:
+  max_train_images: 2
+  max_valid_images: 1
+  crops_per_image: 1
+  larger_kernel_size: 49
+plots: true
+save_example_tensors: true
+# RMSE(candidate-reference) <= atol + rtol*RMSE(reference).
+# Thresholds are explicit acceptance rules, not a claim about geometry quality.
+tolerances:
+  float64: {atol: 1.0e-8, rtol: 1.0e-5, signal_floor: 1.0e-10}
+  float32: {atol: 1.0e-5, rtol: 5.0e-3, signal_floor: 1.0e-6}
+  reverse64: {atol: 1.0e-10, rtol: 1.0e-8, signal_floor: 1.0e-12}
+  analytic64: {atol: 1.0e-12, rtol: 1.0e-10, signal_floor: 1.0e-12}
+  precision: {atol: 1.0e-6, rtol: 1.0e-3, signal_floor: 1.0e-10}
+  support: {atol: 1.0e-7, rtol: 1.0e-3, signal_floor: 1.0e-10}
