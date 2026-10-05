@@ -1,0 +1,13 @@
+# Task 4 reads Task 3 matrices only. It performs no image/Jacobian estimation.
+plots: true
+rank_atol: 1.0e-12
+rank_rtol: 1.0e-8
+psd_atol: 1.0e-14
+psd_rtol: 1.0e-10
+# Cluster the lowest eigenspace before interpreting an individual eigenvector.
+eigengap_atol: 1.0e-12
+eigengap_rtol: 1.0e-3
+# Rank sensitivity is a reporting study, not a fitted intrinsic dimension.
+rank_sweep_atol: [1.0e-14, 1.0e-12, 1.0e-10]
+rank_sweep_rtol: [1.0e-10, 1.0e-8, 1.0e-6]
+reference_point: median
